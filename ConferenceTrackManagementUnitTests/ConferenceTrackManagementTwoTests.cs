@@ -29,7 +29,15 @@ public class InputParser
 {
     public Talk Parse(string input)
     {
-        var regex = new Regex("")
+        var regex = new Regex(@"\w+");
+
+        var thing = regex.Matches();
+        var match = regex.Match(input);
+
+        var min = int.Parse(match.Groups[1].Value);
+        var length = TimeSpan.FromMinutes(min);
+
+        return new Talk(match.Groups[0].Value, length);
     }
 }
 

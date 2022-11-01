@@ -10,4 +10,9 @@
     &lt;Project Location="/Users/jim/code/alix-software-apprenticeship-kata/ConferenceTrackManagementUnitTests" Presentation="&amp;lt;ConferenceTrackManagementUnitTests&amp;gt;" /&gt;
     &lt;Namespace&gt;ConferenceTrackManagementUnitTests&lt;/Namespace&gt;
   &lt;/And&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=67f21e0e_002D6e4a_002D49a1_002D88e1_002D13157441ac5e/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="GivenSingleTalkCanParseTitleAndTime" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::8B66705D-A41A-4E6A-8016-3EA456D58DA1::net6.0::ConferenceTrackManagementUnitTests.ConferenceTrackManagementTwoTests.GivenSingleTalkCanParseTitleAndTime&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
