@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
 
-namespace kata.ConferenceTrackManagement;
+namespace kata.ConferenceTrackManagementTwo;
 
 public record ConferenceTalk(
     string Title,

@@ -1,4 +1,6 @@
 using kata;
+using kata.ConferenceTrackManagement;
+using kata.ConferenceTrackManagementTwo;
 
 namespace ConferenceTrackManagementUnitTests;
 
@@ -21,6 +23,16 @@ public class ConferenceTrackManagementTwoTests
     }
     
     // Arranges talks into sessions
+
+    [Fact]
+    public void MorningSessionIsUnder4Hours()
+    {
+        var talks = new List<ConferenceTalk>();
+
+        var track = new ConferenceTrack(talks);
+        
+        Assert.True(track.MorningSession.RunTime < TimeSpan.FromHours(4));
+    }
     
     
     // Pretty prints the output

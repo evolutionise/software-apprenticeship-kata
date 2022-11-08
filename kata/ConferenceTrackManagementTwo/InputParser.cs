@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
 
-namespace kata;
+namespace kata.ConferenceTrackManagementTwo;
 
 public class InputParser
 {
