@@ -29,37 +29,17 @@ public class InputParser
 {
     public Talk Parse(string input)
     {
-        var regex = new Regex(@"\w+");
+        var regex = new Regex(@"(\w+)(\d+)");
 
-        var thing = regex.Matches(input);
-        var match = regex.Match(input);
+        var matches = regex.Matches(input);
 
-        var min = int.Parse(match.Groups[1].Value);
-        var length = TimeSpan.FromMinutes(min);
+        var titleWordsWithoutTime = input.Split(' ').TakeWhile(w => w != matches[0].Value);
+        var titleWithoutTime = string.Join(' ', titleWordsWithoutTime);
 
-        return new Talk(match.Groups[0].Value, length);
+        var time = matches[0].Value.Substring(0, matches[0].Length - 3);
+
+        return new Talk(titleWithoutTime, time);
     }
 }
 
 public record Talk(string Title, TimeSpan Length);
-
-
-// Writing Fast Tests Against Enterprise Rails 60min  
-// Overdoing it in Python 45min  
-// Lua for the Masses 30min  
-// Ruby Errors from Mismatched Gem Versions 45min   
-// Common Ruby Errors 45min  
-// Rails for Python Developers lightning  
-//     Communicating Over Distance 60min  
-// Accounting-Driven Development 45min  
-// Woah 30min  
-// Sit Down and Write 30min  
-// Pair Programming vs Noise 45min  
-// Rails Magic 60min  
-// Ruby on Rails: Why We Should Move On 60min  
-// Clojure Ate Scala (on my project) 45min  
-// Programming in the Boondocks of Seattle 30min  
-// Ruby vs. Clojure for Back-End Development 30min  
-// Ruby on Rails Legacy App Maintenance 60min  
-// A World Without HackerNews 30min  
-// User Interface CSS in Rails Apps 30min  
