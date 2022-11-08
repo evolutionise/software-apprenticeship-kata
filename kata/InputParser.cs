@@ -7,15 +7,16 @@ public class InputParser
     public Talk Parse(string rawTitleString)
     {
         var timeMatch = MatchOnTime(rawTitleString);
-        var titleWithoutTime = ExtractTitleFromRawString(rawTitleString, timeMatch);
-        var timespan = GetTimeFromMatch(timeMatch);
+        var title = ExtractTitleFromRawString(rawTitleString, timeMatch);
+        var time = GetTimeFromMatch(timeMatch);
 
-        return new Talk(titleWithoutTime, timespan);
+        return new Talk(title, time);
     }
 
     private static TimeSpan GetTimeFromMatch(Match timeMatch)
     {
-        var time = timeMatch.Value[..2];
+        var expectedLengthOfMinutesString = 2;
+        var time = timeMatch.Value[..expectedLengthOfMinutesString];
 
         var timespan = new TimeSpan(0, minutes: int.Parse(time), 0);
         return timespan;
@@ -29,9 +30,9 @@ public class InputParser
         return matches[0];
     }
 
-    private static string ExtractTitleFromRawString(string input, Match matches)
+    private static string ExtractTitleFromRawString(string input, Match timeMatch)
     {
-        var titleWordsWithoutTime = input.Split(' ').TakeWhile(w => w != matches.Value + "min");
+        var titleWordsWithoutTime = input.Split(' ').TakeWhile(w => w != timeMatch.Value + "min");
         var titleWithoutTime = string.Join(' ', titleWordsWithoutTime);
         return titleWithoutTime;
     }
