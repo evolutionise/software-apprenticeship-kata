@@ -29,15 +29,16 @@ public class InputParser
 {
     public Talk Parse(string input)
     {
-        var regex = new Regex(@"\w+");
+        var regex = new Regex(@"(\w+)(\d+)");
 
-        var thing = regex.Matches();
-        var match = regex.Match(input);
+        var matches = regex.Matches(input);
 
-        var min = int.Parse(match.Groups[1].Value);
-        var length = TimeSpan.FromMinutes(min);
+        var titleWordsWithoutTime = input.Split(' ').TakeWhile(w => w != matches[0].Value);
+        var titleWithoutTime = string.Join(' ', titleWordsWithoutTime);
 
-        return new Talk(match.Groups[0].Value, length);
+        var time = matches[0].Value.Substring(0, matches[0].Length - 3);
+
+        return new Talk(titleWithoutTime, time);
     }
 }
 
