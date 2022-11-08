@@ -1,4 +1,4 @@
-using System.Text.RegularExpressions;
+using kata;
 
 namespace ConferenceTrackManagementUnitTests;
 
@@ -22,29 +22,9 @@ public class ConferenceTrackManagementTwoTests
     
     // Arranges talks into sessions
     
+    
     // Pretty prints the output
 }
-
-public class InputParser
-{
-    public Talk Parse(string input)
-    {
-        var regex = new Regex(@"(\w+)(\d+)");
-
-        var matches = regex.Matches(input);
-
-        var titleWordsWithoutTime = input.Split(' ').TakeWhile(w => w != matches[0].Value + "min");
-        var titleWithoutTime = string.Join(' ', titleWordsWithoutTime);
-
-        var time = matches[0].Value.Substring(0, matches[0].Length - 3);
-
-        var timespan = new TimeSpan(0, minutes: int.Parse(time), 0);
-
-        return new Talk(titleWithoutTime, timespan);
-    }
-}
-
-public record Talk(string Title, TimeSpan Length);
 
 // Writing Fast Tests Against Enterprise Rails 60min  
 // Overdoing it in Python 45min  
