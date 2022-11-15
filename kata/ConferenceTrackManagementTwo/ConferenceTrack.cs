@@ -17,7 +17,7 @@ public class ConferenceTrack
                 var lastAddedItem = accumulatedListOfTalks.Last();
                 lastAddedItem.Item2.Add(talk);
                 accumulatedListOfTalks.Add(
-                    (lastAddedItem.Item1.Add(new TimeSpan(0, talk.Minutes.Value, 0)), lastAddedItem.Item2));
+                    (lastAddedItem.Item1.Add(talk.Minutes.Value), lastAddedItem.Item2));
                 return accumulatedListOfTalks;
             });
         
