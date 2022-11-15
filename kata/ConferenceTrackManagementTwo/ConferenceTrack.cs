@@ -1,14 +1,12 @@
 namespace kata.ConferenceTrackManagementTwo;
 
-public record ConferenceTrack(
-    ConferenceSession AfternoonSession,
-    ConferenceSession MorningSession
-)
+public class ConferenceTrack
 {
-    public ConferenceTrack(List<ConferenceTalk> talks) : this()
+    public ConferenceTrack(List<ConferenceTalk> talks)
     {
-
     }
+
+    public ConferenceSession MorningSession { get; set; }
 }
 
 public record ConferenceSession(
