@@ -4,7 +4,7 @@ namespace kata.ConferenceTrackManagementTwo;
 
 public record ConferenceTalk(
     string Title,
-    int? Minutes = null
+    TimeSpan? Minutes = null
 )
 {
     public static ConferenceTalk ParseConferenceTalkString(string line)
@@ -20,7 +20,8 @@ public record ConferenceTalk(
         
         var title = result.Groups[1].Value;
         var runTime = int.Parse(result.Groups[2].Value);
-        return new ConferenceTalk(title, runTime);
+        var runTimeSpan = new TimeSpan(0, runTime, 0);
+        return new ConferenceTalk(title, runTimeSpan);
     }
 }
     

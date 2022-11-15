@@ -4,13 +4,13 @@ namespace kata.ConferenceTrackManagementTwo;
 
 public class InputParser
 {
-    public Talk Parse(string rawTitleString)
+    public ConferenceTalk Parse(string rawTitleString)
     {
         var timeMatch = MatchOnTime(rawTitleString);
         var title = ExtractTitleFromRawString(rawTitleString, timeMatch);
         var time = GetTimeFromMatch(timeMatch);
 
-        return new Talk(title, time);
+        return new ConferenceTalk(title, time);
     }
 
     private static TimeSpan GetTimeFromMatch(Match timeMatch)
