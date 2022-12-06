@@ -27,6 +27,11 @@ public class InputParser
         var regex = new Regex(@"(\w+)(\d+)");
 
         var matches = regex.Matches(input);
+
+        if (!matches.Any())
+        {
+            var 
+        }
         return matches[0];
     }
 

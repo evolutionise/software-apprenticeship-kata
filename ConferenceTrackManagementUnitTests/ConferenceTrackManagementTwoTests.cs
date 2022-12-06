@@ -22,37 +22,36 @@ public class ConferenceTrackManagementTwoTests
         Assert.Equal(new TimeSpan(0, 60, 0), result.Minutes);
     }
     
-    object[][] confernceTalkScenarios = new List<object[]>{
+    public static List<object[]> confernceTalkScenarios => new List<object[]>{
         new object[]{"Writing Fast Tests Against Enterprise Rails 60min ", "Writing Fast Tests Against Enterprise Rails ", 60},
         new object[]{"Overdoing it in Python 45min ", "Overdoing it in Python", 45},
-        new object[]{"Lua for the Masses 30min ", "", 
-        new object[]{"Ruby Errors from Mismatched Gem Versions 45min  ", "", 
-        new object[]{"Common Ruby Errors 45min ", "", 
-        new object[]{"Rails for Python Developers lightning ", "", 
-        new object[]{"Communicating Over Distance 60min ", "", 
-        new object[]{"Accounting-Driven Development 45min ", "", 
-        new object[]{"Woah 30min ",
-        new object[]{"Sit Down and Write 30min ", "", 
-        new object[]{"Pair Programming vs Noise 45min ", "", 
-        new object[]{"Rails Magic 60min ", "", 
-        new object[]{"Ruby on Rails: Why We Should Move On 60min ", "", 
-        new object[]{"Clojure Ate Scala (on my project) 45min ", "", 
-        new object[]{"Programming in the Boondocks of Seattle 30min ", "", 
-        new object[]{"Ruby vs. Clojure for Back-End Development 30min ", "", 
-        new object[]{"Ruby on Rails Legacy App Maintenance 60min ", "", 
-        new object[]{"A World Without HackerNews 30min ", "", 
-        new object[]{"User Interface CSS in Rails Apps 30min " "", 
+        new object[]{"Lua for the Masses 30min ", "Lua for the Masses", 30}, 
+        new object[]{"Ruby Errors from Mismatched Gem Versions 45min  ", "Ruby Errors from Mismatched Gem Versions", 45},
+        new object[]{"Common Ruby Errors 45min ", "Common Ruby Errors", 45}, 
+        new object[]{"Rails for Python Developers lightning ", "Rails for Python Developers", 15}, 
+        new object[]{"Communicating Over Distance 60min ", "Communicating Over Distance", 60}, 
+        new object[]{"Accounting-Driven Development 45min ", "Accounting-Driven Development", 45}, 
+        new object[]{"Woah 30min ", "Woah", 30},
+        new object[]{"Sit Down and Write 30min ", "Sit Down and Write", 30}, 
+        new object[]{"Pair Programming vs Noise 45min ", "Pair Programming vs Noise", 45}, 
+        new object[]{"Rails Magic 60min ", "Rails Magic", 60},
+        new object[]{"Ruby on Rails: Why We Should Move On 60min ", "Ruby on Rails: Why We Should Move On", 60},
+        new object[]{"Clojure Ate Scala (on my project) 45min ", "Clojure Ate Scala (on my project)", 45}, 
+        new object[]{"Programming in the Boondocks of Seattle 30min ", "Programming in the Boondocks of Seattle", 30},
+        new object[]{"Ruby vs. Clojure for Back-End Development 30min ", "Ruby vs. Clojure for Back-End Development", 30},
+        new object[]{"Ruby on Rails Legacy App Maintenance 60min ", "Ruby on Rails Legacy App Maintenance", 60},
+        new object[]{"A World Without HackerNews 30min ", "A World Without HackerNews", 30},
+        new object[]{"User Interface CSS in Rails Apps 30min ", "User Interface CSS in Rails Apps", 30}
     };
 
-    [Fact]
-    public void GivenListOfTalksCanParseTitleAndTime()
+    [Theory]
+    [MemberData(nameof(confernceTalkScenarios))]
+    public void GivenListOfTalksCanParseTitleAndTime(string rawString, string title, int mins)
     {
-         
-        
         var parser = new InputParser();
-        var talks = input.Select(il => parser.Parse(il)).ToList();
+        var talk = parser.Parse(rawString);
         
-        Assert.True(talks is not null);
+        Assert.True(talk is not null);
     }
     
     // Arranges talks into sessions
