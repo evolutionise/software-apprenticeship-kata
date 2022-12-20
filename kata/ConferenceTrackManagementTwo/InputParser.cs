@@ -6,38 +6,39 @@ public class InputParser
 {
     public ConferenceTalk Parse(string rawTitleString)
     {
-        var timeMatch = MatchOnTime(rawTitleString);
-        var title = ExtractTitleFromRawString(rawTitleString, timeMatch);
-        var time = GetTimeFromMatch(timeMatch);
-
+        var time = GetTimeFromMatch(rawTitleString);
+        var title = ExtractTitleFromRawString(rawTitleString);
+        
         return new ConferenceTalk(title, time);
     }
 
-    private static TimeSpan GetTimeFromMatch(Match timeMatch)
+    private static TimeSpan GetTimeFromMatch(string input)
     {
+        var matches = MatchOnTime(input);
+
+        if (!matches.Any()) return new TimeSpan(0, 15, 0);
+        
         var expectedLengthOfMinutesString = 2;
-        var time = timeMatch.Value[..expectedLengthOfMinutesString];
+        var time = matches[0].Value[..expectedLengthOfMinutesString];
 
         var timespan = new TimeSpan(0, minutes: int.Parse(time), 0);
         return timespan;
+
     }
 
-    private static Match MatchOnTime(string input)
+    private static MatchCollection MatchOnTime(string input)
     {
         var regex = new Regex(@"(\w+)(\d+)");
 
         var matches = regex.Matches(input);
-
-        if (!matches.Any())
-        {
-            var 
-        }
-        return matches[0];
+        
+        return matches;
     }
 
-    private static string ExtractTitleFromRawString(string input, Match timeMatch)
+    private static string ExtractTitleFromRawString(string input)
     {
-        var titleWordsWithoutTime = input.Split(' ').TakeWhile(w => w != timeMatch.Value + "min");
+        // take until last word
+        var titleWordsWithoutTime = input.Split(' ').TakeWhile(w => w != matches[0].Value + "min");
         var titleWithoutTime = string.Join(' ', titleWordsWithoutTime);
         return titleWithoutTime;
     }
