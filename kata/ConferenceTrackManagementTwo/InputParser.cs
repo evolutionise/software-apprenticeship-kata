@@ -37,8 +37,8 @@ public class InputParser
 
     private static string ExtractTitleFromRawString(string input)
     {
-        // take until last word
-        var titleWordsWithoutTime = input.Split(' ').TakeWhile(w => w != matches[0].Value + "min");
+        var words = input.Trim().Split(' ');
+        var titleWordsWithoutTime = words.Take(words.Length - 1);
         var titleWithoutTime = string.Join(' ', titleWordsWithoutTime);
         return titleWithoutTime;
     }

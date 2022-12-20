@@ -15,9 +15,14 @@ public class ConferenceTrack
             (accumulatedListOfTalks, talk) =>
             {
                 var lastAddedItem = accumulatedListOfTalks.Last();
-                lastAddedItem.Item2.Add(talk);
-                accumulatedListOfTalks.Add(
-                    (lastAddedItem.Item1.Add(talk.Minutes.Value), lastAddedItem.Item2));
+
+                if (lastAddedItem.Item1.Add(talk.Minutes.Value) < new TimeSpan(0, 4, 0, 0))
+                {
+                    lastAddedItem.Item2.Add(talk);
+                    accumulatedListOfTalks.Add((lastAddedItem.Item1.Add(talk.Minutes.Value), lastAddedItem.Item2));
+                    return accumulatedListOfTalks;
+                }
+
                 return accumulatedListOfTalks;
             });
         
