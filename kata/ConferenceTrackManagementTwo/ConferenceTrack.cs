@@ -27,7 +27,7 @@ public class ConferenceTrack
             });
         
         
-        MorningSession = new ConferenceSession(talks);
+        MorningSession = new ConferenceSession(talksTotallingLessThan4Hrs.Last().Item2);
     }
 
     public ConferenceSession MorningSession { get; set; }

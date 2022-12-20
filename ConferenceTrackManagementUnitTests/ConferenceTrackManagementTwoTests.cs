@@ -59,8 +59,9 @@ public class ConferenceTrackManagementTwoTests
     [Fact]
     public void MorningSessionIsUnder4Hours()
     {
+        var parser = new InputParser();
         //arrange
-        var talks = new List<ConferenceTalk>();
+        var talks = confernceTalkScenarios.Select(x => parser.Parse(x[0].ToString())).ToList();
         
         //act
         var track = new ConferenceTrack(talks);
